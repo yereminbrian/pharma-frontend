@@ -1,0 +1,65 @@
+<section class="page">
+  <header class="page-header">
+    <h2>Reporte de ventas por categoría</h2>
+    <div class="botones no-imprimir">
+      <button
+        type="button"
+        class="btn"
+        [disabled]="!items().length"
+        (click)="imprimir()"
+      >🖨 Imprimir reporte</button>
+    </div>
+  </header>
+
+  <!-- Solo en el papel: filtros del reporte -->
+  <p class="solo-impresion resumen-filtros">
+    Período: {{ resumenFiltros() }} · Impreso el {{ ahora() | date: 'dd/MM/yyyy HH:mm' }}
+  </p>
+
+  <form [formGroup]="filtros" (ngSubmit)="buscar()" class="card filtros no-imprimir">
+    <label>Desde <input class="input" type="date" formControlName="desde" /></label>
+    <label>Hasta <input class="input" type="date" formControlName="hasta" /></label>
+    <div class="botones">
+      <button type="button" class="btn" (click)="limpiar()">Limpiar</button>
+      <button type="submit" class="btn btn-primary">Consultar</button>
+    </div>
+  </form>
+
+  @if (error()) {
+    <div class="alerta">{{ error() }}</div>
+  }
+
+  @if (cargando()) {
+    <p>Generando reporte…</p>
+  } @else {
+    <table class="tabla">
+      <thead>
+        <tr>
+          <th>Categoría</th>
+          <th class="monto">Unidades vendidas</th>
+          <th class="monto">Total facturado</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of items(); track item.categoriaId) {
+          <tr>
+            <td><strong>{{ item.categoria }}</strong></td>
+            <td class="monto">{{ item.cantidad }}</td>
+            <td class="monto">{{ item.total | currency: 'PEN' : 'S/ ' }}</td>
+          </tr>
+        } @empty {
+          <tr><td colspan="3" class="vacio">No hay ventas registradas en el período seleccionado.</td></tr>
+        }
+      </tbody>
+      @if (items().length > 0) {
+        <tfoot>
+          <tr>
+            <td><strong>Total general</strong></td>
+            <td class="monto"><strong>{{ totalUnidades() }} unidades</strong></td>
+            <td class="monto total">{{ totalMonto() | currency: 'PEN' : 'S/ ' }}</td>
+          </tr>
+        </tfoot>
+      }
+    </table>
+  }
+</section>

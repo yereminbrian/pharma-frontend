@@ -1,0 +1,8 @@
+.filtros { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end; margin-bottom: 16px; max-width: 600px; }
+.filtros label { display: flex; flex-direction: column; gap: 4px; font-size: 14px; font-weight: 600; }
+.botones { display: flex; gap: 8px; }
+.monto { text-align: right; white-space: nowrap; }
+.total { font-size: 16px; font-weight: 700; color: #0f2e5c; }
+.vacio { text-align: center; color: #6b7280; padding: 24px; }
+.page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.resumen-filtros { margin: 0 0 12px; font-size: 13px; color: #374151; }
