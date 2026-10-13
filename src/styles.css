@@ -25,3 +25,37 @@ h2 { color: #0f2e5c; }
   border-radius: 8px; background: white; font: inherit; cursor: pointer; }
 .confirmacion-acciones .confirmar { border-color: #b42318; background: #b42318; color: white; }
 .confirmacion-acciones button:disabled { opacity: .55; cursor: not-allowed; }
+
+/* ---------- Componentes base ---------- */
+.card { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+.btn { display: inline-flex; align-items: center; justify-content: center; padding: 8px 14px; border: 1px solid #cbd5e1; border-radius: 6px; background: white; color: #1f2937; text-decoration: none; cursor: pointer; font: inherit; font-size: 14px; font-weight: 500; }
+.btn:hover { background: #f8fafc; }
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+.btn-primary { background: #0f2e5c; border-color: #0f2e5c; color: white; }
+.btn-primary:hover { background: #1a427d; }
+.btn-peligro { border-color: #b42318; color: #b42318; background: white; }
+.btn-peligro:hover { background: #fef2f2; }
+.input { padding: 8px 12px; border: 1px solid #cbd5e1; border-radius: 6px; font: inherit; font-size: 14px; box-sizing: border-box; }
+.input:focus { outline: none; border-color: #0f2e5c; box-shadow: 0 0 0 2px rgba(15,46,92,0.2); }
+.tabla { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
+.tabla th, .tabla td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e3e8f0; }
+.tabla th { background: #0f2e5c; color: white; font-weight: 600; font-size: 14px; }
+.alerta { padding: 12px 16px; border-radius: 8px; background: #fef3f2; color: #b42318; border: 1px solid #fecaca; margin-bottom: 16px; font-weight: 500; }
+.exito { padding: 12px 16px; border-radius: 8px; background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; margin-bottom: 16px; font-weight: 500; }
+.badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; background: #dcfce7; color: #166534; }
+.badge.inactivo { background: #f1f5f9; color: #64748b; }
+
+/* ---------- Impresión ---------- */
+.solo-impresion { display: none; }
+@media print {
+  @page { size: A4; margin: 12mm; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: #fff; }
+  /* Fuera del papel: botones, filtros y todo lo marcado .no-imprimir (el layout oculta su menú en main-layout.css) */
+  .no-imprimir { display: none !important; }
+  .solo-impresion { display: block; }
+  .card { box-shadow: none; border-radius: 0; padding: 0; }
+  .tabla { border-radius: 0; }
+  .tabla th { background: #fff; color: #000; border-bottom: 2px solid #0f2e5c; }
+  .tabla tr { break-inside: avoid; }
+}
